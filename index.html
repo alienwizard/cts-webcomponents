@@ -49,8 +49,14 @@
             </style>
             <div class="movie-card" part="card">
                 <img id="movie-poster" alt="...loading">
-                <h2 id="movie-title"/>
-                <span id="movie-year" />
+                <h2 id="movie-title"></h2>
+                <span id="movie-year"><slot slot="movie-year">Loading year</slot></span>
+            </div>
+        </template>
+        <template>
+            <div id="movie-favorite-checkbox-wrapper">
+                <label id="movie-favorite-label">Favorite</label>
+                <input id="movie-favorite-checkbox" type="checkbox"/>
             </div>
         </template>
         <main>
