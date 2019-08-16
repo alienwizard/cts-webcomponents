@@ -1,0 +1,19 @@
+h1 {
+    color: pink;
+    font-size: 60px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+body {
+    background: black;
+    color: yellow;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}

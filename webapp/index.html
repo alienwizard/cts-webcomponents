@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Title</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="module" src="./src/socketClient.js"></script>
+        <link rel="stylesheet" type="text/css" href="./src/globalStyles.css" />
+    </head>
+    <body>
+        <template id="list">
+            <style>
+                #movie-list {
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+                :host movie-card {
+                    margin: 10px;
+                }
+                movie-card::part(card) {
+                    flex: 1;
+                    width: 300px;
+                }
+            </style>
+            <div id="movie-list"></div>
+        </template>
+
+        <template id="title">
+            <style>
+                h1 {
+                    color: red;
+                }
+            </style>
+        </template>
+
+        <template id="card">
+            <style>
+                :host {
+                    background: white;
+                    border: gray 1px solid;
+                    display: flex;
+                    color: red;
+                }
+
+                img {
+                    display: block;
+                }
+            </style>
+            <div class="movie-card" part="card">
+                <img id="movie-poster" alt="...loading">
+                <h2 id="movie-title"/>
+                <span id="movie-year" />
+            </div>
+        </template>
+        <main>
+            <movie-title>
+                <h1>Movies!!</h1>
+            </movie-title>
+            <input is="movie-search" placeholder="type to search" />
+            <movie-list></movie-list>
+        </main>
+    </body>
+    <script type="module" src="./src/app.js"></script>
+</html>
