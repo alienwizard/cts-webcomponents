@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Title</title>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="module" src="./src/socketClient.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./src/styles/variables.css" />
+        <link rel="stylesheet" type="text/css" href="./src/styles/header.css" />
+        <link rel="stylesheet" type="text/css" href="./src/globalStyles.css" />
+    </head>
+    <body>
+        <template id="list">
+            <style>
+                #movie-list {
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+                :host movie-card {
+                    margin: 10px;
+                }
+                movie-card::part(card) {
+                    flex: 1;
+                    width: 300px;
+                }
+            </style>
+            <div id="movie-list"></div>
+        </template>
+        <!--TODO: ta bort movie-header -->
+        <template id="header">
+            <style>
+                :host {
+                    margin-bottom: 10px;
+                    background: red;
+                    display: block;
+                }
+
+                a {
+                    text-decoration: none;
+                }
+
+                :host(.red) ::slotted(h1) {
+                    color: white;
+                }
+
+                ::slotted(nav) {
+                    display: flex;
+                    flex-flow: row;
+                    align-content: center;
+                }
+
+                .header__wrapper {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-gap: var(--grid-gap);
+                    max-width: 87.4375em;
+                    margin: 0 auto;
+                }
+            </style>
+            <header>
+                <div class="header__wrapper">
+                    <a href="/"><slot name="logo"><h1>Placeholder logo</h1></slot></a>
+                    <slot name="nav"></slot>
+                </div>
+            </header>
+        </template>
+        <template id="card">
+            <style>
+                :host {
+                    background: white;
+                    border: gray 1px solid;
+                    display: flex;
+                    color: red;
+                }
+
+                img {
+                    display: block;
+                }
+
+                #card-body {
+                    padding: 0px 20px;
+                    margin-bottom: 20px;
+                }
+            </style>
+            <div class="movie-card" part="card">
+                <img id="movie-poster" alt="...loading">
+                <div id="card-body">
+                    <h2 id="movie-title"></h2>
+                    <span id="movie-year"></span>
+                </div>
+                <div>
+                    <span>Current likes: <span id="movie-likes"/></span>
+                    <button id="like-button">Like movie <3</button>
+                </div>
+            </div>
+        </template>
+        <template>
+            <div id="movie-favorite-checkbox-wrapper">
+                <label id="movie-favorite-label">Favorite</label>
+                <input id="movie-favorite-checkbox" type="checkbox"/>
+            </div>
+        </template>
+        <movie-header class="red">
+            <h1 class="header__logo" slot="logo">Movies</h1>
+            <nav slot="nav">
+                <ul class="header__navigation">
+                    <li><a href="/favorite-movies">Favorite movies</a></li>
+                    <li><a href="/movie-news">News</a></li>
+                </ul>
+            </nav>
+        </movie-header>
+        <main>
+            <input is="movie-search" placeholder="type to search" />
+            <movie-list></movie-list>
+        </main>
+    </body>
+    <script type="module" src="./src/app.js"></script>
+</html>

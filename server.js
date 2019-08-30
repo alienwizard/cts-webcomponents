@@ -9,24 +9,45 @@ const KEY = "39d59e43";
 
 app.use(express.static("public"));
 
-app.get("/api/movies", (req, res) => {
+app.get("/api/movies/favorites", (req, res) => {
+    const favoriteMovies = [
+        {
+            title: 'Seven Samurai',
+            cover: 'img/seven_samurai.jpg',
+            year: '1965'
+        },
+        {
+            title: 'Hot Fuzz',
+            cover: 'img/hot_fuzz.jpg',
+            year: '2007'
+        },
+        {
+            title: 'The Empire Strikes back',
+            cover: 'img/empire_strikes_back.jpg',
+            year: '1980'
+        }
+    ];
 
+    res.send(favoriteMovies);
 });
 
-app.get('/articles', (req, res) => {
-   res.sendFile(join(__dirname, "movie-articles.html"));
-})
+const public_files_url = join(__dirname, 'public');
+const img_files_url = join(__dirname, 'resources', 'img');
+
+app.get('/movie-news', (req, res) => {
+   res.sendFile(join(public_files_url, "movie-news.html"));
+});
 
 app.post("/api/favorite-movie", (req, res) => {
 
 });
 
 app.get("/favorite-movies", (req, res) => {
-    res.sendFile(join(__dirname, "favorite-movies.html"));
+    res.sendFile(join(public_files_url, "favorite-movies.html"));
 });
 
 app.get("/", (req, res) => {
-   res.sendFile(join(__dirname, "index.html"));
+   res.sendFile(join(public_files_url, "index.html"));
 });
 
 let serverRestarted = true;

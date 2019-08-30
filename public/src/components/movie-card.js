@@ -6,9 +6,18 @@ class MovieCard extends HTMLElement {
         const templateContent = template.content;
 
         this.attachShadow({mode: "open"}).appendChild(templateContent.cloneNode(true));
+
+        this.boundLike = () => this.like();
     }
+
     static get observedAttributes() {
-        return ["poster", "title", "favorite"];
+        return ["poster", "title", "favorite", "year", "likes"];
+    }
+
+    connectedCallback() {
+        this.setAttribute('likes', '0');
+        const likeButton = this.shadowRoot.getElementById('like-button');
+        likeButton.addEventListener('click', this.boundLike);
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
@@ -22,11 +31,20 @@ class MovieCard extends HTMLElement {
         case "year":
             this.shadowRoot.querySelector("#movie-year").innerHTML = newValue;
             break;
-        case "year":
+        case "imdbID":
             this.shadowRoot.querySelector("#movie-year").innerHTML = newValue;
+            break;
+        case "likes":
+            this.shadowRoot.querySelector("#movie-likes").innerHTML = newValue;
             break;
 
         }
+    }
+
+    like() {
+        let likes = Number.parseInt(this.getAttribute('likes'));
+        likes = likes + 1;
+        this.setAttribute('likes', likes.toString());
     }
 }
 

@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "build-watch": "webpack --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.5.5"
+    "@babel/core": "^7.5.5",
+    "css-loader": "^3.2.0",
+    "style-loader": "^1.0.0"
   },
   "dependencies": {
     "lit-element": "^2.2.1",

@@ -1,0 +1,3 @@
+.header__navigation a.header__link--active {
+    text-decoration: underline;
+}

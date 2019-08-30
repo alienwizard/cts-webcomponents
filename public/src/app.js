@@ -1,6 +1,6 @@
 import "./components/movie-list.js";
 import "./components/movie-card.js";
-import "./components/movie-title.js";
+import "./components/movie-header.js";
 import "./components/movie-search.js";
 import "./components/movie-article.js";
 
