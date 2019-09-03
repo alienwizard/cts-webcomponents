@@ -6,7 +6,7 @@ class MovieShowcase extends LitElement {
         return {
             movie: {type: Object},
             likes: {type: Number}
-        }
+        };
     }
 
     static get styles() {
@@ -16,7 +16,7 @@ class MovieShowcase extends LitElement {
                 grid-template-rows: 1fr auto;
                 width: 100%;
             }
-            
+
             img {
             width: 100%;
             height: auto;
@@ -43,7 +43,7 @@ class MovieShowcase extends LitElement {
                     <h2>${title}</h2>
                 </div>
                 <div class="movie-showcase__like-bar">
-                     <span class="movie-showcase__likes">Current likes: ${this.likes}</span>
+                    <span class="movie-showcase__likes">Current likes: ${this.likes}</span>
                     <button @click="${this.like}">Like this movie <3</button>
                 </div>
             </div>

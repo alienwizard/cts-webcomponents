@@ -15,14 +15,13 @@ class MovieList extends HTMLElement {
     }
 
     disconnectedCallback() {
-        window.removeEventListener('fetchedMoview', this.boundUpdateMovieList);
+        window.removeEventListener('fetchedMovies', this.boundUpdateMovieList);
     }
 
     updateMovieList(event) {
         const {detail: movies} = event;
-        const ulElement = this.shadowRoot.querySelector("div");
 
-        ulElement.childNodes.forEach((node) => ulElement.removeChild(node));
+        this.shadowRoot.childNodes.forEach((node) => this.shadowRoot.removeChild(node));
 
         if (movies) {
             movies.forEach((movie) => {
@@ -31,7 +30,7 @@ class MovieList extends HTMLElement {
                 movieCard.setAttribute("poster", movie.Poster);
                 movieCard.setAttribute("imdbID", movie.imdbID);
                 movieCard.setAttribute("year", movie.Year);
-                ulElement.appendChild(movieCard);
+                this.shadowRoot.appendChild(movieCard);
             });
         }
     }

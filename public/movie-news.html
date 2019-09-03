@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Movie Blog</title>
-  <script type="module" src="./src/app.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="./src/socketClient.js"></script>
   <link rel="stylesheet" type="text/css" href="./src/styles/variables.css" />
   <link rel="stylesheet" type="text/css" href="./src/globalStyles.css" />
   <link rel="stylesheet" type="text/css" href="./src/styles/header.css" />
@@ -31,87 +28,43 @@
     </style>
     <article>
       <slot name="article-title"><h2>Placeholder Title</h2></slot>
-      <slot name="article-body"></slot>
+      <slot name="article-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.</p></slot>
       <a href="">Läs mer</a>
     </article>
   </template>
-  <template id="header">
-    <style>
-      :host {
-        margin-bottom: 10px;
-        background: red;
-        display: block;
-      }
-
-      a {
-        text-decoration: none;
-        color: white;
-      }
-
-      :host(.red) ::slotted(h1) {
-        color: white;
-      }
-
-      ::slotted(nav) {
-        display: flex;
-        flex-flow: row;
-        align-content: center;
-      }
-
-      .header__wrapper {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-gap: var(--grid-gap);
-        max-width: 87.4375em;
-        margin: 0 auto;
-      }
-
-      :host-context(.blog--halloween) {
-        background: #ff6a00;
-        font-family: 'Lacquer', sans-serif;
-      }
-    </style>
-    <header>
-      <div class="header__wrapper">
-        <a href="/"><slot name="logo"><h1 >Placeholder logo</h1></slot></a>
-        <slot name="nav"></slot>
-      </div>
-    </header>
-  </template>
-  <!--add header in demo? -->
-  <movie-header>
-    <h1 class="header__logo" slot="logo">Movies</h1>
-    <nav slot="nav">
-      <ul class="header__navigation">
-        <li><a href="/favorite-movies">Favorite movies</a></li>
-        <li><a class="header__link--active" href="/movie-blog">News</a></li>
-      </ul>
-    </nav>
-  </movie-header>
+  <header>
+    <div class="header__wrapper">
+      <a href="/"><h1 class="header__logo">Movies</h1></a>
+      <nav>
+        <ul class="header__navigation">
+          <li><a href="/favorite-movies">Favorite movies</a></li>
+          <li><a class="header__link--active" href="/movie-blog">News</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <main>
     <movie-article>
       <h2 slot="article-title">Ny cool film på gång: det rör sig om spöken</h2>
-      <p slot="article-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.</p>
     </movie-article>
     <movie-article>
       <h2 slot="article-title">Vulkanutbrott stör filminspelning: "Funkar ju inte"</h2>
-      <p slot="article-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.</p>
     </movie-article>
     <movie-article>
       <h2 slot="article-title">Nya manuset – Oläsbart</h2>
-      <p slot="article-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.
       </p>
     </movie-article>
     <movie-article>
       <h2 slot="article-title">Vampyr hittad i transylvanien: Aldrig sålt så mycket vitlök</h2>
-      <p slot="article-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.
       </p>
     </movie-article>
     <movie-article>
-      <h2 slot="article-title">Forest gump</h2>
-      <p slot="article-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in convallis tortor. Nam iaculis dolor eget ipsum dapibus, ac cursus orci convallis. Aliquam varius nisi mi, blandit convallis ipsum placerat sit amet. Praesent malesuada vehicula pulvinar. Proin eget tempor quam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris vel orci gravida, vulputate diam at, aliquam purus. Duis dui sem, auctor ut ornare eu, maximus eu justo. Donec placerat ornare mauris, at cursus arcu sodales in. Cras vitae lorem facilisis, egestas quam vulputate, pellentesque quam. Phasellus vel odio augue. Integer a leo a purus venenatis fermentum in id dui. Suspendisse sed metus eget massa vulputate scelerisque. Nunc mollis nibh at urna porttitor faucibus.
+      <h2 slot="article-title">Skräckfilm visade sig vara heminspelning: “Jag är bara sån” </h2>
       </p>
     </movie-article>
   </main>
+  <script type="module" src="./src/app.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="./src/socketClient.js"></script>
 </body>
 </html>

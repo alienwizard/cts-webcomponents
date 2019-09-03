@@ -1,3 +1,36 @@
+header {
+    margin-bottom: 10px;
+    background: red;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+header.red > h1 {
+    color: white;
+}
+
+.header__wrapper > nav {
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+}
+
+.header__wrapper {
+    max-width: 87.4375em;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--grid-gap);
+}
+
+.blog--halloween header {
+    background: #ff6a00;
+    font-family: 'Lacquer', sans-serif;
+}
+
 .header__navigation a.header__link--active {
     text-decoration: underline;
 }

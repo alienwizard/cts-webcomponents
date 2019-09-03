@@ -6,7 +6,7 @@ class MovieList extends LitElement {
     static get properties() {
         return {
             movies: {type: Array}
-        }
+        };
     }
 
     constructor() {
@@ -20,7 +20,7 @@ class MovieList extends LitElement {
         return html`
             <ul>
                 ${this.movies.map((movie) => html`
-                    <movie-showcase .movie=${movie}></movie-showcase>     
+                    <movie-showcase .movie=${movie}></movie-showcase>
                 `)}
             </ul>
         `;

@@ -14,7 +14,7 @@
     <body>
         <template id="list">
             <style>
-                #movie-list {
+                :host {
                     display: flex;
                     flex-flow: row wrap;
                 }
@@ -26,45 +26,6 @@
                     width: 300px;
                 }
             </style>
-            <div id="movie-list"></div>
-        </template>
-        <!--TODO: ta bort movie-header -->
-        <template id="header">
-            <style>
-                :host {
-                    margin-bottom: 10px;
-                    background: red;
-                    display: block;
-                }
-
-                a {
-                    text-decoration: none;
-                }
-
-                :host(.red) ::slotted(h1) {
-                    color: white;
-                }
-
-                ::slotted(nav) {
-                    display: flex;
-                    flex-flow: row;
-                    align-content: center;
-                }
-
-                .header__wrapper {
-                    display: grid;
-                    grid-template-columns: auto 1fr;
-                    grid-gap: var(--grid-gap);
-                    max-width: 87.4375em;
-                    margin: 0 auto;
-                }
-            </style>
-            <header>
-                <div class="header__wrapper">
-                    <a href="/"><slot name="logo"><h1>Placeholder logo</h1></slot></a>
-                    <slot name="nav"></slot>
-                </div>
-            </header>
         </template>
         <template id="card">
             <style>
@@ -96,21 +57,17 @@
                 </div>
             </div>
         </template>
-        <template>
-            <div id="movie-favorite-checkbox-wrapper">
-                <label id="movie-favorite-label">Favorite</label>
-                <input id="movie-favorite-checkbox" type="checkbox"/>
+        <header class="red">
+            <div class="header__wrapper">
+                    <a href="/"><h1 class="header__logo">Movies</h1></a>
+                    <nav>
+                        <ul class="header__navigation">
+                            <li><a href="/favorite-movies">Favorite movies</a></li>
+                            <li><a href="/movie-news">News</a></li>
+                        </ul>
+                    </nav>
             </div>
-        </template>
-        <movie-header class="red">
-            <h1 class="header__logo" slot="logo">Movies</h1>
-            <nav slot="nav">
-                <ul class="header__navigation">
-                    <li><a href="/favorite-movies">Favorite movies</a></li>
-                    <li><a href="/movie-news">News</a></li>
-                </ul>
-            </nav>
-        </movie-header>
+        </header>
         <main>
             <input is="movie-search" placeholder="type to search" />
             <movie-list></movie-list>

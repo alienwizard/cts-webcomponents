@@ -19,8 +19,7 @@ class MovieSearch extends HTMLInputElement {
     attributeChangedCallback(attrName, oldValue, newValue) {
         if (attrName === "search") {
             request(`https://www.omdbapi.com/?s=${newValue}&apikey=39d59e43&type=movie`).then((data) => {
-                window.store.movies = data.Search;
-                window.dispatchEvent(new CustomEvent("fetchedMovies", {detail: window.store.movies}));
+                window.dispatchEvent(new CustomEvent("fetchedMovies", {detail: data.Search}));
             });
         }
     }
