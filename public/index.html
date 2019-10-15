@@ -14,7 +14,7 @@
     <body>
         <template id="list">
             <style>
-                :host {
+                :host ul {
                     display: flex;
                     flex-flow: row wrap;
                 }
@@ -26,6 +26,7 @@
                     width: 300px;
                 }
             </style>
+            <ul></ul>
         </template>
         <template id="card">
             <style>
@@ -43,6 +44,11 @@
                 #card-body {
                     padding: 0px 20px;
                     margin-bottom: 20px;
+                }
+
+                movie-card::part(card) {
+                    flex: 1;
+                    width: 300px;
                 }
             </style>
             <div class="movie-card" part="card">
@@ -69,7 +75,7 @@
             </div>
         </header>
         <main>
-            <input is="movie-search" placeholder="type to search" />
+            <input is="movie-search" placeholder="Type to search" />
             <movie-list></movie-list>
         </main>
     </body>

@@ -5,7 +5,11 @@ class MovieCard extends HTMLElement {
         const template = document.getElementById("card");
         const templateContent = template.content;
 
-        this.attachShadow({mode: "open"}).appendChild(templateContent.cloneNode(true));
+        // Attaches the shadow root and returns a refernce to it
+        const shadowRoot = this.attachShadow({mode: "open"});
+
+        // Append the content of the template to the shadowRoot
+        shadowRoot.appendChild(templateContent.cloneNode(true));
 
         this.boundLike = () => this.like();
     }

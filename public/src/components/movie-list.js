@@ -5,7 +5,11 @@ class MovieList extends HTMLElement {
         const template = document.getElementById("list");
         const templateContent = template.content;
 
-        this.attachShadow({mode: "open"}).appendChild(templateContent.cloneNode(true));
+        // Attaches the shadow root and returns a refernce to it
+        const shadowRoot = this.attachShadow({mode: "open"});
+
+        // Append the content of the template to the shadowRoot
+        shadowRoot.appendChild(templateContent.cloneNode(true));
 
         this.boundUpdateMovieList = this.updateMovieList.bind(this);
     }
@@ -15,13 +19,14 @@ class MovieList extends HTMLElement {
     }
 
     disconnectedCallback() {
-        window.removeEventListener('fetchedMovies', this.boundUpdateMovieList);
+        window.removeEventListener("fetchedMovies", this.boundUpdateMovieList);
     }
 
     updateMovieList(event) {
         const {detail: movies} = event;
 
-        this.shadowRoot.childNodes.forEach((node) => this.shadowRoot.removeChild(node));
+        const listNode = this.shadowRoot.querySelector("ul");
+        listNode.childNodes.forEach((node) => listNode.removeChild(node));
 
         if (movies) {
             movies.forEach((movie) => {
@@ -30,7 +35,7 @@ class MovieList extends HTMLElement {
                 movieCard.setAttribute("poster", movie.Poster);
                 movieCard.setAttribute("imdbID", movie.imdbID);
                 movieCard.setAttribute("year", movie.Year);
-                this.shadowRoot.appendChild(movieCard);
+                listNode.appendChild(movieCard);
             });
         }
     }
